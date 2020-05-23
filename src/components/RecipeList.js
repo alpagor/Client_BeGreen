@@ -3,32 +3,37 @@ import React, { Component } from "react";
 class RecipeList extends Component {
   state = {
     recipes: [],
+    recipeById: "",
   };
 
   componentDidMount() {
     this.setState({ recipes: this.props.recipes });
+    this.setState({ recipeById: this.props.recipeById });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.recipes !== this.props.recipes) {
       this.setState({ recipes: this.props.recipes });
     }
+    if (prevProps.recipeById !== this.props.recipeById) {
+      this.setState({ recipeById: this.props.recipeById });
+    }
+    console.log(this.state.recipeById)
   }
 
   handleSelect = (e) => {
     const typeOfMeal = e.target.value;
     this.props.getAllRecipes(typeOfMeal);
-    // axios.post(
-    //   'http://localhost:5000/api/projects',
-    //   { title: this.state.title, description: this.state.description }
-    // )
-    //   .then(() => {
-    //     this.setState({ title: '', description: '' })
-    //     this.props.getAllProjects();
-    //     // Triggers the method to get all projects
-    //     // which refreshes the ProjectsPage
-    //   })
-    //   .catch((err) => console.log(err));
+  };
+
+  handleOnClick = (e) => {
+    const recipeName = e.target.value;
+    let recipesCopy = [...this.state.recipes];
+    const recipeObj = recipesCopy.filter((recipe) => {
+      return recipe.name === recipeName;
+    });
+    const recipeId = recipeObj[0]._id;
+    this.props.getRecipeById(recipeId);
   };
 
   render() {
@@ -45,8 +50,19 @@ class RecipeList extends Component {
         </div>
         <div className="recipe-container">
           {this.state.recipes.map((oneRecipe) => {
-            return <div key={oneRecipe._id}> {oneRecipe.name} </div>;
+            return (
+              <div key={oneRecipe._id}>
+                {" "}
+                {oneRecipe.name}
+                <button value={oneRecipe.name} onClick={this.handleOnClick}>
+                  OK
+                </button>
+              </div>
+            );
           })}
+        </div>
+        <div style={{ backgroundColor: "green", height: "200px" }}>
+          <h1>MENU</h1>
         </div>
       </div>
     );
