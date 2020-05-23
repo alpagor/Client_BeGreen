@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
+import './App.css'
+
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';

@@ -1,26 +1,8 @@
-html, body {
-  margin: 0;
-  padding: 0;
+body {
+  background: red;
 }
 
-.App {
-  padding: 20px;;
-}
-
-nav.navbar { 
+/* .homeNavbar {
   display: flex;
-  padding: 0px 20px;
-  background: #686de0; 
-}
-
-button.navbar-button {
-  padding: 5px 20px;
-  width: 100px;
-  margin: 15px 10px;
-  border-radius: 3px;
-}
-
-#home-btn {
-  color: white;
-  text-decoration: none;
-}
+  justify-content: flex-end;
+} */
