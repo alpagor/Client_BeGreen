@@ -1,37 +1,53 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 
 class RecipeList extends Component {
   state = {
-    recipes: [],
+    show: false,
+    setShow: false,
+    recipeById: {},
   };
 
-  componentDidMount() {
-    this.setState({ recipes: this.props.recipes });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.recipes !== this.props.recipes) {
-      this.setState({ recipes: this.props.recipes });
-    }
-  }
+  getRecipeDetails = (recipeId) => {
+    axios
+      .get(`http://localhost:5000/api/recipe/${recipeId}`)
+      .then((response) => {
+        const recipeById = response.data;
+        this.setState({ recipeById: recipeById });
+      })
+      .catch((err) => console.log(err));
+  };
 
   handleSelect = (e) => {
     const typeOfMeal = e.target.value;
     this.props.getAllRecipes(typeOfMeal);
-    // axios.post(
-    //   'http://localhost:5000/api/projects',
-    //   { title: this.state.title, description: this.state.description }
-    // )
-    //   .then(() => {
-    //     this.setState({ title: '', description: '' })
-    //     this.props.getAllProjects();
-    //     // Triggers the method to get all projects
-    //     // which refreshes the ProjectsPage
-    //   })
-    //   .catch((err) => console.log(err));
+  };
+
+  handleOnClick = (e) => {
+    const recipeId = e.target.value;
+    this.props.getRecipeById(recipeId);
+  };
+
+  handleClick = (e) => {
+    const recipeId = e;
+    console.log("TWO", recipeId);
+    this.getRecipeDetails(recipeId);
   };
 
   render() {
+    const recipe = this.state.recipeById;
+
+    // MODAL BOOTSTRAP
+
+    const handleClose = () => this.setState({ show: false });
+    const handleShow = (value) => {
+      console.log("ONE", value);
+      this.setState({ show: true });
+      this.handleClick(value);
+    };
+
     return (
       <div>
         <div className="search-meal">
@@ -44,10 +60,54 @@ class RecipeList extends Component {
           </select>
         </div>
         <div className="recipe-container">
-          {this.state.recipes.map((oneRecipe) => {
-            return <div key={oneRecipe._id}> {oneRecipe.name} </div>;
+          {this.props.recipes.map((oneRecipe) => {
+            return (
+              <div key={oneRecipe._id}>
+                {" "}
+                <Link
+                  onClick={function () {
+                    handleShow(oneRecipe._id);
+                  }}
+                >
+                  {oneRecipe.name}
+                </Link>
+                <button value={oneRecipe._id} onClick={this.handleOnClick}>
+                  OK
+                </button>
+              </div>
+            );
           })}
         </div>
+
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          show={this.state.show}
+          onHide={handleClose}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>{recipe.name}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <img src={recipe.img} alt="Recipe" />
+            <div className="cook-info">
+              <p>Cooking time: {recipe.cooktime}</p>
+              <p>Preparation time: {recipe.preptime}</p>
+              <p>Servings: {recipe.servings}</p>
+              <p>Protein: {recipe.protein}g</p>
+            </div>
+            <div>
+              <h4>Ingredients:</h4>
+              <ul>
+                {/* {recipe.ingredients.map((ingredient) => {
+                  return <li>{ingredient}</li>;
+                })} */}
+              </ul>
+            </div>
+          </Modal.Body>
+          <Modal.Footer></Modal.Footer>
+        </Modal>
       </div>
     );
   }
