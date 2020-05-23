@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 
 class RecipeList extends Component {
-  state = {
-    recipes: [],
-    recipeById: "",
-  };
+  // state = {
+  //   recipes: [],
+  //   recipeById: "",
+  // };
 
-  componentDidMount() {
-    this.setState({ recipes: this.props.recipes });
-    this.setState({ recipeById: this.props.recipeById });
-  }
+  // componentDidMount() {
+  //   this.setState({ recipes: this.props.recipes });
+  //   this.setState({ recipeById: this.props.recipeById });
+  // }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.recipes !== this.props.recipes) {
-      this.setState({ recipes: this.props.recipes });
-    }
-    if (prevProps.recipeById !== this.props.recipeById) {
-      this.setState({ recipeById: this.props.recipeById });
-    }
-    console.log(this.state.recipeById)
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.recipes !== this.props.recipes) {
+  //     this.setState({ recipes: this.props.recipes });
+  //   }
+  //   if (prevProps.recipeById !== this.props.recipeById) {
+  //     this.setState({ recipeById: this.props.recipeById });
+  //   }
+  // }
 
   handleSelect = (e) => {
     const typeOfMeal = e.target.value;
@@ -27,12 +26,12 @@ class RecipeList extends Component {
   };
 
   handleOnClick = (e) => {
-    const recipeName = e.target.value;
-    let recipesCopy = [...this.state.recipes];
-    const recipeObj = recipesCopy.filter((recipe) => {
-      return recipe.name === recipeName;
-    });
-    const recipeId = recipeObj[0]._id;
+    const recipeId = e.target.value;
+    // let recipesCopy = [...this.state.recipes];
+    // const recipeObj = recipesCopy.filter((recipe) => {
+    //   return recipe.name === recipeName;
+    // });
+    // const recipeId = recipeObj[0]._id;
     this.props.getRecipeById(recipeId);
   };
 
@@ -49,20 +48,17 @@ class RecipeList extends Component {
           </select>
         </div>
         <div className="recipe-container">
-          {this.state.recipes.map((oneRecipe) => {
+          {this.props.recipes.map((oneRecipe) => {
             return (
               <div key={oneRecipe._id}>
                 {" "}
                 {oneRecipe.name}
-                <button value={oneRecipe.name} onClick={this.handleOnClick}>
+                <button value={oneRecipe._id} onClick={this.handleOnClick}>
                   OK
                 </button>
               </div>
             );
           })}
-        </div>
-        <div style={{ backgroundColor: "green", height: "200px" }}>
-          <h1>MENU</h1>
         </div>
       </div>
     );
