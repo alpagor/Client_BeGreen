@@ -1,8 +1,44 @@
-body {
-  background: red;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&family=Rosario:wght@300;700&display=swap");
+
+/*
+font-family: 'Roboto', sans-serif;
+font-family: 'Rosario', sans-serif;
+*/
+
+.navHome {
+  display: flex;
+  justify-content: space-between;
 }
 
-/* .homeNavbar {
+.BeGreen {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  margin-left: 200px;
+}
+
+.homeNavbar {
   display: flex;
   justify-content: flex-end;
-} */
+  align-items: center;
+  margin: 60px 211px 0 0;
+}
+
+.homeNavbar a {
+  margin-left: 61px;
+  padding: 0.1em 1.2em;
+  text-decoration: none;
+  text-align: center;
+  border: 5px solid #fab246;
+  box-sizing: border-box;
+  font-weight: bold;
+  border-radius: 25px;
+  font-size: 15px;
+  line-height: 35px;
+  font-family: "Roboto", sans-serif;
+  color: black;
+}
+
+.signup {
+  background-color: #fab246;
+}
