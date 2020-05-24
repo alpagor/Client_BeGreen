@@ -61,19 +61,6 @@ class GeneratorPage extends Component {
     }
   };
 
-  // addRecipeInMenu = () => {
-  //   this.setState((prevState) => {
-  //     let newMenu = prevState.menu;
-  //     newMenu.push(this.prevState.recipeById);
-  //     return {
-  //       menu: newMenu,
-  //     };
-  //   });
-  //   // this.setState({ menu: [...this.state.menu, this.state.recipeById] });
-  //   console.log("FIRST", this.state.menu);
-  //   console.log("K soy?", this.state.recipeById);
-  // };
-
   render() {
     // 2
     return (
@@ -87,9 +74,10 @@ class GeneratorPage extends Component {
           recipeById={this.state.recipeById}
           addRecipeInMenu={this.addRecipeInMenu}
         />
-        <Menu 
-        menu={this.state.menu} 
-        getRecipeById={this.getRecipeById} 
+        <Menu
+          id="menu"
+          menu={this.state.menu}
+          getRecipeById={this.getRecipeById}
         />
       </div>
     );

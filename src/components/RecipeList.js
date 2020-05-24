@@ -35,9 +35,29 @@ class RecipeList extends Component {
     this.getRecipeDetails(recipeId);
   };
 
+  //  drop = e => {
+  //   const recipeId = e.target.value;
+  //   this.props.getRecipeById(recipeId);
+  // }
+
+  // dragOverOne = e => {
+  //   e.preventDefault()
+  // }
+
+  // dragStart = e =>{
+  //   const target = e.target
+  //   e.dataTransfer.setData('card_id', target.id)
+  //   setTimeout(() => {
+  //       target.style.display = 'none'
+  //   }, 0)
+  // }
+
+  // dragOverTwo = e => {
+  //   e.stopPropagation()
+  // }
+
   render() {
     const recipe = this.state.recipeById;
-    const ingredients = recipe.ingredients
 
     // MODAL BOOTSTRAP
 
@@ -58,10 +78,24 @@ class RecipeList extends Component {
             <option value="dinner">Dinner</option>
           </select>
         </div>
-        <div className="recipe-container">
+
+        <div 
+              // id='recipe-list'
+              // onDrop={this.drop}
+              // onDragOver={this.dragOverOne}
+              // className='recipe-list'
+              
+              >
           {this.props.recipes.map((oneRecipe) => {
             return (
-              <div key={oneRecipe._id}>
+              <div 
+              key={oneRecipe._id}
+              // id = {oneRecipe._id}
+              // className='recipe-card'
+              // onDragStart={this.dragStart}
+              // onDragOver={this.dragOverTwo}
+              // draggable='true'
+              >
                 {" "}
                 <Link
                   onClick={function () {
@@ -99,16 +133,17 @@ class RecipeList extends Component {
             <div>
               <h4>Ingredients:</h4>
               <ul> 
-                {/* {ingredients.map((ingredient) => {
+                { recipe.ingredients &&
+                  recipe.ingredients.map((ingredient) => {
                   
                   return <li>{ingredient}</li>;
-                })} */}
+                })}
               </ul>
               <h4>Instructions:</h4>
               <ol>
-                {/* {recipe.instructions.map((instruction) => {
+                { recipe.instructions && recipe.instructions.map((instruction) => {
                   return <li>{instruction}</li>
-                })} */}
+                })}
               </ol>
             </div>
           </Modal.Body>

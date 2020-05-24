@@ -1,0 +1,122 @@
+body {
+  min-height: 100vh;
+}
+
+.green-container {
+  background: linear-gradient(180deg, #9cffc4 0%, rgba(255, 255, 255, 0) 100%),
+    #51e74e;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%),
+    rgba(255, 255, 255, 0.93);
+  border: 1px solid #51e74e;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 80%;
+}
+
+.auth-container h1 {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  text-decoration-line: underline;
+  font-family: "Rosario", sans-serif;
+  margin-top: 33px;
+  margin-bottom: 35px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 343px;
+  margin-top: 84px;
+}
+
+.logo-container h3 {
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 58px;
+  text-align: center;
+  font-family: "Rosario", sans-serif;
+}
+
+.img-container-two {
+  margin: 0 auto;
+  width: 15rem;
+}
+
+.img-container-two img {
+  max-width: 100%;
+  text-align: center;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+form label {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 35px;
+  text-align: center;
+  font-family: "Rosario", sans-serif;
+}
+
+.name {
+  margin-right: 15px;
+}
+
+.big-input {
+  padding-left: 90px;
+}
+
+.custom-file {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.create-account {
+  background: #fab246;
+  border: 1px solid rgba(0, 0, 0, 0.42);
+  box-sizing: border-box;
+  color: black;
+  font-family: "Rosario", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 44px;
+  text-align: center;
+  margin-bottom: 35px;
+  margin-top: 55px;
+}
+
+form p {
+  font-family: "Rosario", sans-serif;
+  font-size: 15px;
+  line-height: 44px;
+  text-align: center;
+}
+
+form a {
+  font-family: "Rosario", sans-serif;
+  font-size: 15px;
+  text-align: center;
+  color: #d3830c;
+  margin-bottom: 35px;
+}
