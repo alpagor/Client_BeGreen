@@ -5,16 +5,25 @@ font-family: 'Roboto', sans-serif;
 font-family: 'Rosario', sans-serif;
 */
 
+/* HOME PAGE */
+
+.big-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .navHome {
   display: flex;
   justify-content: space-between;
 }
 
 .BeGreen {
-  width: 200px;
+  width: 10em;
   max-width: 100%;
   height: auto;
-  margin-left: 200px;
+  margin-left: 40px;
+  margin-top: 25px;
 }
 
 .homeNavbar {
@@ -26,7 +35,7 @@ font-family: 'Rosario', sans-serif;
 
 .homeNavbar a {
   margin-left: 61px;
-  padding: 0.1em 1.2em;
+  padding: 0.01em 1em;
   text-decoration: none;
   text-align: center;
   border: 5px solid #fab246;
@@ -42,6 +51,129 @@ font-family: 'Rosario', sans-serif;
 .signup {
   background-color: #fab246;
 }
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Rosario", sans-serif;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.text-container h2 {
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+}
+
+.text-container p {
+  font-size: 23px;
+  line-height: 44px;
+  margin-top: 60px;
+}
+
+.text-container a {
+  text-decoration: none;
+  text-align: center;
+  border: 5px solid #fab246;
+  box-sizing: border-box;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 35px;
+  padding: 0.9rem 1rem;
+  margin-top: 22px;
+  line-height: 35px;
+  font-family: "Roboto", sans-serif;
+  color: black;
+  background-color: #fab246;
+}
+
+.happy-cooking {
+  max-width: 60%;
+  object-fit: contain;
+}
+
+.comparative-container h2 {
+  font-family: "Rosario", sans-serif;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+  text-align: center;
+  margin-top: 86px;
+}
+
+.comparative-container p {
+  font-family: "Rosario", sans-serif;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.img-container {
+  width: 10rem;
+  margin: 0 auto;
+}
+
+.img-container img {
+  max-width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.comparative {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 35px;
+  margin-bottom: 300px;
+}
+
+.user-type {
+  border: 5px solid rgba(197, 183, 183, 0.24);
+  box-sizing: border-box;
+  box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  margin-right: 38px;
+  padding: 50px 50px 25px 50px;
+}
+
+.user-type h4 {
+  font-size: 28px;
+  line-height: 44px;
+  text-align: center;
+  font-family: "Rosario", sans-serif;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.user-type ul {
+  font-size: 25px;
+  line-height: 33px;
+  text-align: center;
+  font-family: "Rosario", sans-serif;
+  margin-bottom: 70px;
+}
+
+.user-type li {
+  margin-bottom: 15px;
+}
+
+footer {
+  height: 70px;
+  background: linear-gradient(180deg, #9cffc4 0%, rgba(255, 255, 255, 0) 100%),
+    #51e74e;
+}
+
+footer p {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  padding-top: 25px;
+  padding-left: 10px;
+}
+
+/* GENERATOR PAGE */
 
 .modal img {
   margin-left: 150px;

@@ -32,18 +32,17 @@ class RecipeList extends Component {
 
   handleClick = (e) => {
     const recipeId = e;
-    console.log("TWO", recipeId);
     this.getRecipeDetails(recipeId);
   };
 
   render() {
     const recipe = this.state.recipeById;
+    const ingredients = recipe.ingredients
 
     // MODAL BOOTSTRAP
 
     const handleClose = () => this.setState({ show: false });
     const handleShow = (value) => {
-      console.log("ONE", value);
       this.setState({ show: true });
       this.handleClick(value);
     };
@@ -99,11 +98,18 @@ class RecipeList extends Component {
             </div>
             <div>
               <h4>Ingredients:</h4>
-              <ul>
-                {/* {recipe.ingredients.map((ingredient) => {
+              <ul> 
+                {/* {ingredients.map((ingredient) => {
+                  
                   return <li>{ingredient}</li>;
                 })} */}
               </ul>
+              <h4>Instructions:</h4>
+              <ol>
+                {/* {recipe.instructions.map((instruction) => {
+                  return <li>{instruction}</li>
+                })} */}
+              </ol>
             </div>
           </Modal.Body>
           <Modal.Footer></Modal.Footer>
