@@ -17,7 +17,7 @@ class Menu extends Component {
 
   handleOnClick = (e) => {
     const recipeId = e.target.value;
-    this.props.getRecipeById(recipeId);
+    this.props.removeFromMenu(recipeId);
   };
 
   render() {
@@ -30,7 +30,7 @@ class Menu extends Component {
               {" "}
               {oneRecipe.name}
               <button value={oneRecipe._id} onClick={this.handleOnClick}>
-                OK
+                DELETE
               </button>
             </div>
           );

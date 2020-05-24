@@ -33,7 +33,6 @@ class GeneratorPage extends Component {
   };
 
   getRecipeById = (recipeId) => {
-    console.log(recipeId, this.state.menu);
     if (this.state.menu.length < 3) {
       axios
         .get(`http://localhost:5000/api/recipe/${recipeId}`)
@@ -61,18 +60,7 @@ class GeneratorPage extends Component {
     }
   };
 
-  // addRecipeInMenu = () => {
-  //   this.setState((prevState) => {
-  //     let newMenu = prevState.menu;
-  //     newMenu.push(this.prevState.recipeById);
-  //     return {
-  //       menu: newMenu,
-  //     };
-  //   });
-  //   // this.setState({ menu: [...this.state.menu, this.state.recipeById] });
-  //   console.log("FIRST", this.state.menu);
-  //   console.log("K soy?", this.state.recipeById);
-  // };
+  
 
   render() {
     // 2
@@ -85,12 +73,8 @@ class GeneratorPage extends Component {
           getAllRecipes={this.getAllRecipes}
           getRecipeById={this.getRecipeById}
           recipeById={this.state.recipeById}
-          addRecipeInMenu={this.addRecipeInMenu}
         />
-        <Menu 
-        menu={this.state.menu} 
-        getRecipeById={this.getRecipeById} 
-        />
+        <Menu menu={this.state.menu} getRecipeById={this.removeFromMenu} />
       </div>
     );
   }
