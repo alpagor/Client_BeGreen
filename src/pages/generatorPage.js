@@ -1,21 +1,28 @@
 import React, { Component } from "react";
 import axios from "axios";
 import RecipeList from "../components/RecipeList";
-
+import styled from "styled-components";
+import { DragDropContext } from "react-beautiful-dnd";
+import Column from "./Column";
 import Navbar from "../components/Navbar";
 import Menu from "../components/Menu";
+import menuPage from "./menuPage";
+
+
 
 class GeneratorPage extends Component {
   state = {
     recipes: [], // 1
     recipeById: {},
     menu: [],
+    menusList: [],
   };
 
   componentDidMount() {
     // 3
     this.getAllRecipes();
     this.getRecipeById();
+  
   }
 
   getAllRecipes = (typeString) => {
@@ -60,7 +67,7 @@ class GeneratorPage extends Component {
     }
   };
 
-  
+
 
   render() {
     // 2
@@ -75,6 +82,7 @@ class GeneratorPage extends Component {
           recipeById={this.state.recipeById}
         />
         <Menu menu={this.state.menu} getRecipeById={this.removeFromMenu} />
+        
       </div>
     );
   }
