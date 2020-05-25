@@ -19,7 +19,6 @@ class GeneratorPage extends Component {
   componentDidMount() {
     // 3
     this.getAllRecipes();
-    this.getRecipeById();
   }
 
   getAllRecipes = (typeString) => {
@@ -68,6 +67,7 @@ class GeneratorPage extends Component {
   handleOnClick = (e) => {
     const recipeId = e.target.value;
     this.getRecipeById(recipeId);
+    console.log('CLICK')
   };
 
   render() {

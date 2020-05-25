@@ -7,11 +7,11 @@
   margin-top: 50px;
 }
 
-.dragNDrop {
+/* .dragNDrop {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
+} */
 
 .search-meal {
   text-align: center;

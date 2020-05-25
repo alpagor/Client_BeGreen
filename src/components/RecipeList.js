@@ -6,7 +6,6 @@ import axios from "axios";
 class RecipeList extends Component {
   state = {
     show: false,
-    setShow: false,
     recipeById: {},
   };
 
@@ -25,10 +24,7 @@ class RecipeList extends Component {
     this.props.getAllRecipes(typeOfMeal);
   };
 
-  // handleOnClick = (e) => {
-  //   const recipeId = e.target.value;
-  //   this.props.getRecipeById(recipeId);
-  // };
+ 
 
   handleClick = (e) => {
     const recipeId = e;
@@ -49,32 +45,11 @@ class RecipeList extends Component {
 
     return (
       <div>
-        {/* <div className="search-meal">
-          <label forhtml="meal">Advanced Search</label>
-          <select id="meal" onChange={this.handleSelect}>
-            <option value="all">Get All</option>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-          </select>
-        </div> */}
-
-        <div 
-              // id='recipe-list'
-              // onDrop={this.drop}
-              // onDragOver={this.dragOverOne}
-              // className='recipe-list'
-              
-              >
+        <div>
           {this.props.recipes.map((oneRecipe) => {
             return (
               <div 
               key={oneRecipe._id}
-              // id = {oneRecipe._id}
-              // className='recipe-card'
-              // onDragStart={this.dragStart}
-              // onDragOver={this.dragOverTwo}
-              // draggable='true'
               >
                 {" "}
                 <Link

@@ -1,0 +1,19 @@
+.list-group-item {
+  width: 30vw;
+  text-align: center;
+  margin-left: 60px;
+  padding-bottom: 15px;
+}
+
+.menu-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.hide-div {
+  text-align: center;
+}
+
+.cook-info-two {
+  font-size: 15px;
+}
