@@ -5,7 +5,10 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import Navbar from "../components/Navbar";
 import Menu from "../components/Menu";
-import menuPage from "./menuPage";
+
+import './generatorPage.css'
+
+
 import DnDcontroler from "./../components/DnDcontroler";
 
 class GeneratorPage extends Component {
@@ -13,7 +16,7 @@ class GeneratorPage extends Component {
     recipes: [], // 1
     recipeById: {},
     menu: [],
-    menusList: [],
+    // menusList: [],
   };
 
   componentDidMount() {
@@ -64,11 +67,33 @@ class GeneratorPage extends Component {
     }
   };
 
+  handleSelect = (e) => {
+    const typeOfMeal = e.target.value;
+    this.getAllRecipes(typeOfMeal);
+  };
+
   render() {
     // 2
     return (
       <div>
         <Navbar />
+
+        <div className='instructions'>
+          <p>Here you can create your own menus.</p>
+          <br/>
+          <p>Just drag and drop a recipe!</p>
+        </div>
+
+        <div className="search-meal">
+          <label forhtml="meal">Advanced Search</label>
+          <select id="meal" onChange={this.handleSelect}>
+            <option value="all">Get All</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+          </select>
+        </div>
+
         <DnDcontroler 
           recipes={this.state.recipes}
           getAllRecipes={this.getAllRecipes}

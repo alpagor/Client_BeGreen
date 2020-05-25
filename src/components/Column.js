@@ -3,6 +3,7 @@ import styled from "styled-components"; //importar antes!!!
 import { Droppable } from "react-beautiful-dnd";
 import Recipe from "./Recipe";
 
+
 const Container = styled.div`
   margin: 8px;
   border: 1px solid lightgrey;
@@ -32,14 +33,19 @@ class InnerList extends React.Component {
   }
 
   render() {
-    return this.props.recipes.map((recipe, index) => (
-      <Recipe key={recipe.id} recipe={recipe} index={index} />
-    ));
+    return this.props.recipes.map((recipe, index) => {
+      console.log(">>>>>>>", recipe);
+      return <Recipe key={recipe._id} recipe={recipe} index={index} />;
+    });
   }
 }
 
 class Column extends React.Component {
+  
+
   render() {
+    
+
     return (
       <Container>
         <Title>{this.props.column.title}</Title>
@@ -55,6 +61,8 @@ class Column extends React.Component {
             </RecipesList>
           )}
         </Droppable>
+
+        
       </Container>
     );
   }

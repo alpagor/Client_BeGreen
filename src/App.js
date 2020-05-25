@@ -6,7 +6,6 @@ import "./App.css";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Private from "./pages/Private";
 import GeneratorPage from "./pages/generatorPage";
 import MenuPage from "./pages/menuPage";
 import ChatPage from "./pages/chatPage";
@@ -25,7 +24,6 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <PublicRoute exact path="/signup" component={Signup} />
           <PublicRoute exact path="/login" component={Login} />
-          <PrivateRoute exact path="/private" component={Private} />
           <PrivateRoute exact path="/generator" component={GeneratorPage} />
           <PrivateRoute exact path="/menu" component={MenuPage} />
           <PrivateRoute exact path="/chat" component={ChatPage} />{" "}

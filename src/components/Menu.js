@@ -7,7 +7,7 @@ class Menu extends Component {
   state = {
     show: false,
     setShow: false,
-    name: ''
+    name: "",
   };
 
   handleOnClick = (e) => {
@@ -21,30 +21,25 @@ class Menu extends Component {
   };
 
   handleChange = (e) => {
-    const {name, value} = e.target
-    this.setState({[name]:value})
-  }
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     axios
-    .post(process.env.REACT_APP_API_URL + '/api/menu', 
-    {name: this.state.name, recipes:this.props.menu}
-    )
-    .then((response) =>{
-      console.log('MENU HAS BEEN CREATED', response)
-    })
-    .catch((err) => console.log(err));
-  }
-  
-
-  // handleOnClick = (e) => {
-  //   const recipeId = e.target.value;
-  //   this.props.removeFromMenu(recipeId);
-  // };
+      .post(
+        process.env.REACT_APP_API_URL + "/api/menu",
+        { name: this.state.name, recipes: this.props.menu },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log("MENU HAS BEEN CREATED", response);
+      })
+      .catch((err) => console.log(err));
+  };
 
   render() {
-
     // MODAL BOOTSTRAP
 
     const handleClose = () => this.setState({ show: false });
@@ -53,30 +48,31 @@ class Menu extends Component {
     };
 
     return (
-      <div style={{ backgroundColor: "green", height: "200px" }}>
+      <div
+        className="menu-list-drag"
+        style={{ backgroundColor: "green", height: "200px" }}
+      >
         <h1>MENU</h1>
         {this.props.menu.map((oneRecipe) => {
           return (
             <div key={oneRecipe._id}>
               {" "}
               {oneRecipe.name}
-              <button value={oneRecipe._id} >
-                DELETE
-              </button>
+              <button value={oneRecipe._id}>DELETE</button>
             </div>
-            
           );
         })}
-        <button  
+        <button
           onClick={function () {
-          handleShow()}}
-          >CREATE
-          </button>
+            handleShow();
+          }}
+        >
+          CREATE
+        </button>
 
-          <Modal
+        <Modal
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
-          
           show={this.state.show}
           onHide={handleClose}
         >
@@ -84,16 +80,20 @@ class Menu extends Component {
             <Modal.Title>Create Menu</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
             <form onSubmit={this.handleSubmit}>
               <label>Write the name of your menu</label>
-              <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
-              <Button onClick={handleClose} type='submit' variant="info">Submit</Button>
+              <input
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+              <Button onClick={handleClose} type="submit" variant="info">
+                Submit
+              </Button>
             </form>
-            
           </Modal.Body>
         </Modal>
-
       </div>
     );
   }

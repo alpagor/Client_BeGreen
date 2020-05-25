@@ -176,17 +176,3 @@ footer p {
   padding-top: 25px;
   padding-left: 10px;
 }
-
-/* GENERATOR PAGE */
-
-.modal img {
-  margin-left: 150px;
-  margin-bottom: 25px;
-  width: 60%;
-}
-
-.cook-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}

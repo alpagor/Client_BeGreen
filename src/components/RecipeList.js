@@ -20,10 +20,7 @@ class RecipeList extends Component {
       .catch((err) => console.log(err));
   };
 
-  handleSelect = (e) => {
-    const typeOfMeal = e.target.value;
-    this.props.getAllRecipes(typeOfMeal);
-  };
+  
 
   handleOnClick = (e) => {
     const recipeId = e.target.value;
@@ -51,15 +48,7 @@ class RecipeList extends Component {
 
     return (
       <div>
-        <div className="search-meal">
-          <label forhtml="meal">Advanced Search</label>
-          <select id="meal" onChange={this.handleSelect}>
-            <option value="all">Get All</option>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-          </select>
-        </div>
+        
         <div className="recipe-container">
           {this.props.recipes.map((oneRecipe) => {
             return (

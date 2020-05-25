@@ -6,42 +6,39 @@ import Navbar from "../components/Navbar";
 //User tiene el array the menus
 
 export class MenuPage extends Component {
-    getAllMenus = () => {
-        axios
-        .get(process.env.REACT_APP_API_URL + `/api/menu`)
-        .then((response) => {
-        const menuList = response.data;
-        this.setState({ menuList });
-        })
-        .catch((err) => console.log(err));
-    };
+  state = {
+    menuList: [],
+  };
 
+  getAllMenus = () => {
+    axios
+      .get(process.env.REACT_APP_API_URL + "/api/menu", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        const menu = response.data.menus;
+        this.setState({ menuList: menu });
+      })
+      .catch((err) => console.log(err));
+  };
 
-    handleOnClick = (e) => {
-        const menuId = e.target.value;
-        this.props.removeFromMenu(menuId);
-      };
-
-
-
-    render() {
-        return (
-                <div>
-                    <Navbar />
-                    <h1>MENUs</h1>
-                    {this.props.menu.map((oneMenu) => {
-                        return (
-                            <div key={oneMenu._id}>
-                                {" "}
-                                {oneMenu.name}
-                                <button value={oneMenu._id} onClick={this.handleOnClick}>
-                                DELETE
-                                </button>
-                            </div>
-                            );
-                        })}
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div className="menuList">
+          {this.state.menuList &&
+            this.state.menuList.map((oneMenu) => {
+              return (
+                <div key={oneMenu._id}>
+                  <p>{oneMenu.name}</p>
                 </div>
-            );
-        }
+              );
+            })}
+        </div>
+      </div>
+    );
+  }
 }
+
 export default MenuPage;

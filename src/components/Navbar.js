@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import './Navbar.css';
 
 
 class Navbar extends Component {
+
+  
   render() {
     
     return (
       <nav className="navbar">
-        <Link to={'/generator'}>Generator</Link>
-        <Link to={'/menu'}>Menu</Link>
-        <Link to={'/chat'}>Chat</Link>
-        <Link to={'/user-zone'}>User Zone</Link>
+        <img 
+          className='logo' 
+          src="https://res.cloudinary.com/dywatr6gy/image/upload/v1590218353/BeGreen/Icon_iynxyu.jpg" 
+          alt="Be Green"/>
+        <NavLink to={'/generator'} activeStyle={{color:'#38B735', textDecoration: 'underline'}} >Generator</NavLink>
+        <NavLink to={'/menu'} activeStyle={{color:'#38B735', textDecoration: 'underline'}} >Menu</NavLink>
+        <NavLink to={'/chat'} activeStyle={{color:'#38B735', textDecoration: 'underline'}} >Chat</NavLink>
+        <NavLink to={'/user-zone'} activeStyle={{color:'#38B735', textDecoration: 'underline'}} >User Zone</NavLink>
       </nav>
     );
   }
