@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+import { withAuth } from './../lib/Auth';
+
 import axios from "axios";
 import RecipeList from "../components/RecipeList";
 
 import Navbar from "../components/Navbar";
 import Menu from "../components/Menu";
+
+import './generatorPage.css'
 
 class GeneratorPage extends Component {
   state = {
@@ -61,27 +65,50 @@ class GeneratorPage extends Component {
     }
   };
 
+  handleOnClick = (e) => {
+    const recipeId = e.target.value;
+    this.getRecipeById(recipeId);
+  };
+
   render() {
     // 2
     return (
       <div>
         <Navbar />
+        <div className='instructions'>
+          <p>Here you can create your own menus.</p>
+          <br/>
+          <p>Just drag and drop a recipe!</p>
+        </div>
+          
+        <div className="search-meal">
+          <label forhtml="meal">Show:</label>
+          <select id="meal" onChange={this.handleSelect}>
+            <option value="all">All</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+          </select>
+        </div>
 
-        <RecipeList
-          recipes={this.state.recipes}
-          getAllRecipes={this.getAllRecipes}
-          getRecipeById={this.getRecipeById}
-          recipeById={this.state.recipeById}
-          addRecipeInMenu={this.addRecipeInMenu}
-        />
-        <Menu
-          id="menu"
-          menu={this.state.menu}
-          getRecipeById={this.getRecipeById}
-        />
+        <div className='dragNDrop'>
+          <RecipeList
+            recipes={this.state.recipes}
+            getAllRecipes={this.getAllRecipes}
+            getRecipeById={this.getRecipeById}
+            recipeById={this.state.recipeById}
+            addRecipeInMenu={this.addRecipeInMenu}
+          />
+          <Menu
+            id="menu"
+            menu={this.state.menu}
+            getRecipeById={this.getRecipeById}
+          />
+        </div>
+          
       </div>
     );
   }
 }
 
-export default GeneratorPage;
+export default withAuth(GeneratorPage);

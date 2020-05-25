@@ -31,7 +31,7 @@ class Menu extends Component {
     e.preventDefault()
     axios
     .post('http://localhost:5000/api/menu', 
-    {name: this.state.name, recipes:this.props.menu}
+    {name: this.state.name, recipes:this.props.menu}, {withCredentials:true}
     )
     .then((response) =>{
       console.log('MENU HAS BEEN CREATED', response)

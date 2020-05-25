@@ -19,7 +19,8 @@ body {
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  width: 80%;
+  margin: 0 auto;
+  padding: 0 80px;
 }
 
 .auth-container h1 {
@@ -88,6 +89,12 @@ form label {
   line-height: 35px;
   text-align: center;
   font-family: "Rosario", sans-serif;
+}
+
+.username {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .name {

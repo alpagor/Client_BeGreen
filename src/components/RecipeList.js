@@ -25,36 +25,16 @@ class RecipeList extends Component {
     this.props.getAllRecipes(typeOfMeal);
   };
 
-  handleOnClick = (e) => {
-    const recipeId = e.target.value;
-    this.props.getRecipeById(recipeId);
-  };
+  // handleOnClick = (e) => {
+  //   const recipeId = e.target.value;
+  //   this.props.getRecipeById(recipeId);
+  // };
 
   handleClick = (e) => {
     const recipeId = e;
     this.getRecipeDetails(recipeId);
   };
 
-  //  drop = e => {
-  //   const recipeId = e.target.value;
-  //   this.props.getRecipeById(recipeId);
-  // }
-
-  // dragOverOne = e => {
-  //   e.preventDefault()
-  // }
-
-  // dragStart = e =>{
-  //   const target = e.target
-  //   e.dataTransfer.setData('card_id', target.id)
-  //   setTimeout(() => {
-  //       target.style.display = 'none'
-  //   }, 0)
-  // }
-
-  // dragOverTwo = e => {
-  //   e.stopPropagation()
-  // }
 
   render() {
     const recipe = this.state.recipeById;
@@ -69,7 +49,7 @@ class RecipeList extends Component {
 
     return (
       <div>
-        <div className="search-meal">
+        {/* <div className="search-meal">
           <label forhtml="meal">Advanced Search</label>
           <select id="meal" onChange={this.handleSelect}>
             <option value="all">Get All</option>
@@ -77,7 +57,7 @@ class RecipeList extends Component {
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
           </select>
-        </div>
+        </div> */}
 
         <div 
               // id='recipe-list'
@@ -120,7 +100,7 @@ class RecipeList extends Component {
           onHide={handleClose}
         >
           <Modal.Header closeButton>
-            <Modal.Title>{recipe.name}</Modal.Title>
+            <Modal.Title className='recipe-title'>{recipe.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <img src={recipe.img} alt="Recipe" />
@@ -130,17 +110,17 @@ class RecipeList extends Component {
               <p>Servings: {recipe.servings}</p>
               <p>Protein: {recipe.protein}g</p>
             </div>
-            <div>
+            <div className='cooking-array'>
               <h4>Ingredients:</h4>
               <ul> 
                 { recipe.ingredients &&
                   recipe.ingredients.map((ingredient) => {
                   
-                  return <li>{ingredient}</li>;
+                  return <li>- {ingredient}</li>;
                 })}
               </ul>
               <h4>Instructions:</h4>
-              <ol>
+              <ol className='instructions-recipe'>
                 { recipe.instructions && recipe.instructions.map((instruction) => {
                   return <li>{instruction}</li>
                 })}

@@ -17,4 +17,4 @@ class Private extends Component {
   }
 }
 
-export default withAuth(Private);
+export default Private;
