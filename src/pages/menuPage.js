@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 export class MenuPage extends Component {
     getAllMenus = () => {
         axios
-        .get(`http://localhost:5000/api/menu`)
+        .get(process.env.REACT_APP_API_URL + `/api/menu`)
         .then((response) => {
         const menuList = response.data;
         this.setState({ menuList });

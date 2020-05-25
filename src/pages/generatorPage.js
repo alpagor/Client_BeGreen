@@ -3,12 +3,10 @@ import axios from "axios";
 import RecipeList from "../components/RecipeList";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
-import Column from "./Column";
 import Navbar from "../components/Navbar";
 import Menu from "../components/Menu";
 import menuPage from "./menuPage";
-
-
+import DnDcontroler from "./../components/DnDcontroler";
 
 class GeneratorPage extends Component {
   state = {
@@ -21,14 +19,13 @@ class GeneratorPage extends Component {
   componentDidMount() {
     // 3
     this.getAllRecipes();
-    this.getRecipeById();
-  
+    //this.getRecipeById(); TODO
   }
 
   getAllRecipes = (typeString) => {
     const query = typeString ? `?type=${typeString}` : "";
 
-    const requestURL = `http://localhost:5000/api/recipe${query}`;
+    const requestURL = process.env.REACT_APP_API_URL + `/api/recipe${query}`;
 
     axios
       .get(requestURL)
@@ -42,7 +39,7 @@ class GeneratorPage extends Component {
   getRecipeById = (recipeId) => {
     if (this.state.menu.length < 3) {
       axios
-        .get(`http://localhost:5000/api/recipe/${recipeId}`)
+        .get(process.env.REACT_APP_API_URL + `/api/recipe/${recipeId}`)
         .then((response) => {
           const recipe = response.data;
           let menuArray = [...this.state.menu, recipe];
@@ -67,22 +64,23 @@ class GeneratorPage extends Component {
     }
   };
 
-
-
   render() {
     // 2
     return (
       <div>
         <Navbar />
+        <DnDcontroler 
+          recipes={this.state.recipes}
+          getAllRecipes={this.getAllRecipes}
 
-        <RecipeList
+        />
+        {/* <RecipeList
           recipes={this.state.recipes}
           getAllRecipes={this.getAllRecipes}
           getRecipeById={this.getRecipeById}
           recipeById={this.state.recipeById}
         />
-        <Menu menu={this.state.menu} getRecipeById={this.removeFromMenu} />
-        
+        <Menu menu={this.state.menu} getRecipeById={this.removeFromMenu} /> */}
       </div>
     );
   }

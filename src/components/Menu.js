@@ -28,7 +28,7 @@ class Menu extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     axios
-    .post('http://localhost:5000/api/menu', 
+    .post(process.env.REACT_APP_API_URL + '/api/menu', 
     {name: this.state.name, recipes:this.props.menu}
     )
     .then((response) =>{

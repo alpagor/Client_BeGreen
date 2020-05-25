@@ -12,7 +12,7 @@ class RecipeList extends Component {
 
   getRecipeDetails = (recipeId) => {
     axios
-      .get(`http://localhost:5000/api/recipe/${recipeId}`)
+      .get(process.env.REACT_APP_API_URL + `/api/recipe/${recipeId}`)
       .then((response) => {
         const recipeById = response.data;
         this.setState({ recipeById: recipeById });

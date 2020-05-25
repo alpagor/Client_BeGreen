@@ -26,7 +26,7 @@ class RecipeDetails extends Component {
   
     getRecipebyId = () => {
       axios
-        .get("http://localhost:5000/api/recipe/:recipeId", {
+        .get(process.env.REACT_APP_API_URL + "/api/recipe/:recipeId", {
             
             name: this.state.name, 
             img: this.state.img, 
