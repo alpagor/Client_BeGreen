@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import RecipeList from "../components/RecipeList";
-import styled from "styled-components";
-import { DragDropContext } from "react-beautiful-dnd";
 import Navbar from "../components/Navbar";
-import Menu from "../components/Menu";
-
 import './generatorPage.css'
 
 

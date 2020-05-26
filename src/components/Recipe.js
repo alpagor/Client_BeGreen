@@ -5,8 +5,6 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-//video 11 para poner las recetas  orizontalmente
-//video 12 mover orizontalmente los components
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -55,7 +53,7 @@ class Recipe extends Component {
         <Draggable
           draggableId={this.props.recipe._id}
           index={this.props.index}
-          //isDragDisabled={true} //Disable recipes to move is set to  true
+          //isDragDisabled={this.props.isDragDisabled} //Disable recipes to move is set to  true    
         >
           {(provided, snapshot) => (
             <Container

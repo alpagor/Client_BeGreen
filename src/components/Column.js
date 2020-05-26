@@ -3,7 +3,6 @@ import styled from "styled-components"; //importar antes!!!
 import { Droppable } from "react-beautiful-dnd";
 import Recipe from "./Recipe";
 
-
 const Container = styled.div`
   margin: 8px;
   border: 1px solid lightgrey;
@@ -35,34 +34,42 @@ class InnerList extends React.Component {
   render() {
     return this.props.recipes.map((recipe, index) => {
       console.log(">>>>>>>", recipe);
-      return <Recipe key={recipe._id} recipe={recipe} index={index} />;
+      return <Recipe key={recipe._id} recipe={recipe} index={index} /*isDragDisabled={this.props.isDragDisabled}*//>;
     });
   }
 }
 
 class Column extends React.Component {
-  
+
+ 
 
   render() {
-    
+
+    // let isDragDisabled = false;
+    // if(this.props.column.isDragDisabled){
+    //   isDragDisabled = true;
+    // }
 
     return (
       <Container>
         <Title>{this.props.column.title}</Title>
-        <Droppable droppableId={this.props.column.id} index={this.props.index}>
+        <Droppable
+          droppableId={this.props.column.id}
+          index={this.props.index}
+          /*isDropDisabled={this.props.isDropDisabled}*/
+        >
           {(provided, snapshot) => (
             <RecipesList
               ref={provided.innerRef}
               {...provided.droppableProps}
-              isDraggingOver={snapshot.isDraggingOver}
+              /*isDraggingOver={snapshot.isDraggingOver}*/
+              
             >
-              <InnerList recipes={this.props.recipes} />
+              <InnerList recipes={this.props.recipes} /*isDragDisabled={isDragDisabled}*//>
               {provided.placeholder}
             </RecipesList>
           )}
         </Droppable>
-
-        
       </Container>
     );
   }

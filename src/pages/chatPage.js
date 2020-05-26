@@ -13,7 +13,7 @@ function ChatPage(props) {
 
   const Container = styled.div`
     margin-bottom: 15px;
-    margin-left:60px;
+    margin-left: 60px;
     border-radius: 3px;
     width: 220px;
 
