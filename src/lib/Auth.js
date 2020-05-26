@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {Spinner} from 'react-bootstrap';
 
 const { Consumer, Provider } = React.createContext();
 
@@ -90,7 +91,9 @@ class AuthProvider extends React.Component {
 
     return (
       <Provider value={{ user, isLoggedIn, isLoading, login, signup, logout }}>
-        {isLoading ? "loading" : this.props.children}
+        {isLoading ? 
+        <Spinner animation="border" variant="success" /> 
+        : this.props.children}
       </Provider>
     );
   }

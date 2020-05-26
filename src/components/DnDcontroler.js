@@ -211,14 +211,15 @@ class DnDcontroler extends Component {
             })}
           </Container>
         </DragDropContext>
-        <button
+        <Button
+          variant="success"
           onClick={function() {
             handleShow();
           }}
         >
           {" "}
           CREATE
-        </button>
+        </Button>
 
         <Modal
           size="lg"
