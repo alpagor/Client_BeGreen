@@ -124,7 +124,7 @@ export class UserZone extends Component {
                 <Form onSubmit={this.editUserInfo}>
                   <Form.Group as={Row}>
                     <Form.Label column sm={2}>
-                      Full name:{ user.fullName }
+                      Full name: 
                     </Form.Label>
                     <Col sm={10}>
                       <Form.Control
@@ -140,7 +140,7 @@ export class UserZone extends Component {
                   </Form.Group>
                   <Form.Group as={Row}>
                     <Form.Label column sm={2}>
-                      Email: { user.email }
+                      Email: 
                     </Form.Label>
                     <Col sm={10}>
                       <Form.Control
