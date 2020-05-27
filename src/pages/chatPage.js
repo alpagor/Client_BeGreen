@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import styled from "styled-components";
@@ -8,7 +7,7 @@ function ChatPage(props) {
   const config = {
     width: "990px",
     height: "600px",
-    //floating: true,
+    floating: true,
   };
 
   const Container = styled.div`
@@ -43,7 +42,7 @@ function ChatPage(props) {
     },
     {
       id: "Help",
-      message: "I'm Ariadna, how can help you?",
+      message: "I'm Siiri, how can help you?",
       trigger: "Waiting user input for help",
     },
     {
@@ -64,7 +63,6 @@ function ChatPage(props) {
   ];
   return (
     <div>
-      <Navbar />
       <Container>
         <ThemeProvider theme={theme}>
           <ChatBot steps={steps} {...config} />

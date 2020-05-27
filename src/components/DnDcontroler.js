@@ -21,7 +21,6 @@ class DnDcontroler extends Component {
         id: "column-1",
         title: "Recipes List",
         recipeIds: [],
-        //isDragDisabled: false,
       },
       "column-2": {
         id: "column-2",
@@ -162,9 +161,9 @@ class DnDcontroler extends Component {
     this.setState(newState);
   };
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     const menu = this.state.columns["column-2"].recipeIds; // Right column containing selected recipes ids
-    console.log("menu", menu);
 
     axios
       .post(
@@ -173,24 +172,35 @@ class DnDcontroler extends Component {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("MENU HAS BEEN CREATED", response);
+        const columns = {
+          "column-1": {
+            id: "column-1",
+            title: "Recipes List",
+            recipeIds: Object.keys(this.state.recipes),
+          },
+          "column-2": {
+            id: "column-2",
+            title: "Menu",
+            recipeIds: [],
+          },
+        };
+        this.setState({ columns: columns, name:'' });
       })
       .catch((err) => console.log(err));
   };
 
   handleChange = (e) => {
-    const {name, value} = e.target
-    this.setState({[name]:value})
-  }
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  handleClose = () => this.setState({ show: false });
+
+  handleShow = () => {
+    this.setState({ show: true });
+  };
 
   render() {
-    // MODAL BOOTSTRAP
-
-    const handleClose = () => this.setState({ show: false });
-    const handleShow = () => {
-      this.setState({ show: true });
-    };
-
     return (
       <div>
         <DragDropContext onDragEnd={this.onDragEnd}>
@@ -211,12 +221,7 @@ class DnDcontroler extends Component {
             })}
           </Container>
         </DragDropContext>
-        <Button
-          variant="success"
-          onClick={function() {
-            handleShow();
-          }}
-        >
+        <Button variant="success" onClick={this.handleShow}>
           {" "}
           CREATE
         </Button>
@@ -225,7 +230,7 @@ class DnDcontroler extends Component {
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           show={this.state.show}
-          onHide={handleClose}
+          onHide={this.handleClose}
         >
           <Modal.Header closeButton>
             <Modal.Title>Create Menu</Modal.Title>
@@ -239,7 +244,7 @@ class DnDcontroler extends Component {
                 value={this.state.name}
                 onChange={this.handleChange}
               />
-              <Button onClick={handleClose} type="submit" variant="info">
+              <Button onClick={this.handleClose} type="submit" variant="info">
                 Submit
               </Button>
             </form>

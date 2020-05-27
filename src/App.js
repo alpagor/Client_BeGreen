@@ -19,7 +19,7 @@ import PrivateRoute from "./components/PrivateRoute";
 class App extends Component {
   render() {
     return (
-      <div className="container">
+      <div>
         <Switch>
           <Route exact path="/" component={Home} />
           <PublicRoute exact path="/signup" component={Signup} />
