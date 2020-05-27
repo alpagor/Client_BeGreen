@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
 import styled from "styled-components";
@@ -23,10 +23,11 @@ function ChatPage(props) {
   const theme = {
     background: "white",
     fontFamily: "Arial, Helvetica, sans-serif",
-    headerBgColor: "#00B2B2",
+    textAlign: "center", 
+    headerBgColor: "#FFA500",
     headerFontColor: "#fff",
     headerFontSize: "25px",
-    botBubbleColor: "#00B2B2",
+    botBubbleColor: "#FFA500",
     botFontColor: "#fff",
     userBubbleColor: "#fff",
     userFontColor: "#4c4c4c",

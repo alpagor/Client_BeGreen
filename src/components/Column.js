@@ -34,17 +34,19 @@ class InnerList extends React.Component {
   render() {
     return this.props.recipes.map((recipe, index) => {
       console.log(">>>>>>>", recipe);
-      return <Recipe key={recipe._id} recipe={recipe} index={index} /*isDragDisabled={this.props.isDragDisabled}*//>;
+      return (
+        <Recipe
+          key={recipe._id}
+          recipe={recipe}
+          index={index} /*isDragDisabled={this.props.isDragDisabled}*/
+        />
+      );
     });
   }
 }
 
 class Column extends React.Component {
-
- 
-
   render() {
-
     // let isDragDisabled = false;
     // if(this.props.column.isDragDisabled){
     //   isDragDisabled = true;
@@ -52,7 +54,9 @@ class Column extends React.Component {
 
     return (
       <Container>
-        <Title>{this.props.column.title}</Title>
+        <Title className="dragRecipes-container">
+          {this.props.column.title}
+        </Title>
         <Droppable
           droppableId={this.props.column.id}
           index={this.props.index}
@@ -63,9 +67,10 @@ class Column extends React.Component {
               ref={provided.innerRef}
               {...provided.droppableProps}
               /*isDraggingOver={snapshot.isDraggingOver}*/
-              
             >
-              <InnerList recipes={this.props.recipes} /*isDragDisabled={isDragDisabled}*//>
+              <InnerList
+                recipes={this.props.recipes} /*isDragDisabled={isDragDisabled}*/
+              />
               {provided.placeholder}
             </RecipesList>
           )}

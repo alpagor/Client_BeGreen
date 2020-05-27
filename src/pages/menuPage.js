@@ -71,7 +71,7 @@ export class MenuPage extends Component {
     };
 
     return (
-      <div>
+      <div className='menuPage'>
         <Navbar />
         <p className="menu-page">
           Here you can look at the menus you saved. <br /> If you want more

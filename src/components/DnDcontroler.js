@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Col, Row } from "react-bootstrap";
 import Column from "./Column";
 import axios from "axios";
 import Recipe from "./Recipe";
@@ -184,7 +184,7 @@ class DnDcontroler extends Component {
             recipeIds: [],
           },
         };
-        this.setState({ columns: columns, name:'' });
+        this.setState({ columns: columns, name: "" });
       })
       .catch((err) => console.log(err));
   };
@@ -215,13 +215,15 @@ class DnDcontroler extends Component {
                 <Column
                   key={column.id}
                   column={column}
-                  recipes={recipes} /*isDropDisabled={isDropDisabled}*/
+                  recipes={recipes}
+                   /*isDropDisabled={isDropDisabled}*/
                 />
               );
             })}
           </Container>
         </DragDropContext>
-        <Button variant="success" onClick={this.handleShow}>
+
+        <Button variant="warning"  onClick={this.handleShow}>
           {" "}
           CREATE
         </Button>
@@ -237,14 +239,19 @@ class DnDcontroler extends Component {
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.handleSubmit}>
-              <label>Write the name of your menu</label>
+              <label> Write the name of your menu </label>
               <input
                 type="text"
                 name="name"
                 value={this.state.name}
                 onChange={this.handleChange}
               />
-              <Button onClick={this.handleClose} type="submit" variant="info">
+              <Button
+                className="create-btn"
+                onClick={this.handleClose}
+                type="submit"
+                variant="info"
+              >
                 Submit
               </Button>
             </form>

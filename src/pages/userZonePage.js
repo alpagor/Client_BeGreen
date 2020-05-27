@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import './userZone.css'
 import {
   Container,
   Card,
@@ -102,7 +103,7 @@ export class UserZone extends Component {
     //const user = this.state.user
 
     return (
-      <div>
+      <div className='userZone'>
         <Navbar />
         <Container>
           <Card text="dark" border="success" md={{ span: 6, offset: 4 }}>
@@ -123,7 +124,7 @@ export class UserZone extends Component {
                 <Form onSubmit={this.editUserInfo}>
                   <Form.Group as={Row}>
                     <Form.Label column sm={2}>
-                      Full name:{" "}
+                      Full name:{ user.fullName }
                     </Form.Label>
                     <Col sm={10}>
                       <Form.Control
@@ -139,7 +140,7 @@ export class UserZone extends Component {
                   </Form.Group>
                   <Form.Group as={Row}>
                     <Form.Label column sm={2}>
-                      Email:
+                      Email: { user.email }
                     </Form.Label>
                     <Col sm={10}>
                       <Form.Control

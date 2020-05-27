@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import './generatorPage.css'
+import "./generatorPage.css";
 //import ChatPage from "./chatPage"
-
 
 import DnDcontroler from "./../components/DnDcontroler";
 
@@ -71,18 +70,18 @@ class GeneratorPage extends Component {
   render() {
     // 2
     return (
-      <div>
+      <div className="generatorPage">
         <Navbar />
 
-        <div className='instructions'>
+        <div className="instructions">
           <p>Here you can create your own menus.</p>
-          <br/>
+
           <p>Just drag and drop a recipe!</p>
         </div>
 
         <div className="search-meal">
           <label forhtml="meal">Advanced Search</label>
-            <select id="meal" onChange={this.handleSelect}>
+          <select id="meal" onChange={this.handleSelect}>
             <option value="all">Get All</option>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
@@ -90,14 +89,10 @@ class GeneratorPage extends Component {
           </select>
         </div>
 
-        <DnDcontroler 
+        <DnDcontroler
           recipes={this.state.recipes}
           getAllRecipes={this.getAllRecipes}
         />
-        
-        {/* <ChatPage /> */}
-     
-
       </div>
     );
   }

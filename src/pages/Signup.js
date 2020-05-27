@@ -37,7 +37,7 @@ class Signup extends Component {
     event.preventDefault();
     if(validateForm(this.state.errors)){
           const { username, password, fullName, email } = this.state;
-
+      console.log(this.state)
     this.props.signup(username, password, fullName, email);
     // this.props.signup method is coming from the AuthProvider
     // injected by the withAuth() HOC
