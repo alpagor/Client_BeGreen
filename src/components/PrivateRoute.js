@@ -1,9 +1,9 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { withAuth } from '../lib/Auth';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { withAuth } from "../lib/Auth";
 
 function PrivateRoute(props) {
-  console.log('props :>> ', props);
+  console.log("props :>> ", props);
 
   const { exact, path, component, isLoggedIn } = props;
   const Component = component;
@@ -13,10 +13,11 @@ function PrivateRoute(props) {
       exact={exact}
       path={path}
       render={(props) => {
-        if (isLoggedIn) return <Component {...props} />
-        else if (!isLoggedIn) return <Redirect to="/login" />
-      }} />
-  )
+        if (isLoggedIn) return <Component {...props} />;
+        else if (!isLoggedIn) return <Redirect to="/" />;
+      }}
+    />
+  );
 }
 
 export default withAuth(PrivateRoute);

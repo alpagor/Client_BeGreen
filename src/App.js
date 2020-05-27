@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+import { withAuth } from "./lib/Auth";
 
 import "./App.css";
 
@@ -18,6 +19,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 class App extends Component {
   render() {
+    const { isLoggedIn } = this.props;
     return (
       <div>
         <Switch>
@@ -32,9 +34,11 @@ class App extends Component {
           <PrivateRoute exact path="/premium-info" component={PremiumInfo} />
           <PrivateRoute exact path="/premium-form" component={PremiumForm} />
         </Switch>
+
+        {isLoggedIn ? <ChatPage /> : null}
       </div>
     );
   }
 }
 
-export default App;
+export default withAuth(App);

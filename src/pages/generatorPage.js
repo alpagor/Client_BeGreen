@@ -94,10 +94,9 @@ class GeneratorPage extends Component {
           recipes={this.state.recipes}
           getAllRecipes={this.getAllRecipes}
         />
-        {/* <div>
-          <ChatPage />
-        </div>
-         */}
+        
+        {/* <ChatPage /> */}
+     
 
       </div>
     );

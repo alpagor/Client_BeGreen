@@ -62,7 +62,7 @@ function ChatPage(props) {
     },
   ];
   return (
-    <div>
+    <div style={{ position: "fixed", bottom: 0, right: 0 }}>
       <Container>
         <ThemeProvider theme={theme}>
           <ChatBot steps={steps} {...config} />
