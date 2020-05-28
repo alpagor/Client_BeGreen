@@ -42,6 +42,7 @@
   margin-right: 40px;
   margin-bottom: 15px;
   font-family: "Rosario", sans-serif;
+  cursor: pointer;
 }
 
 .card-header {
@@ -61,7 +62,7 @@
   font-weight: bold;
 }
 
-.menuPage {
+.menu-Page {
   background-image: url(https://res.cloudinary.com/dywatr6gy/image/upload/v1590584396/BeGreen/3700451_y79dww.jpg);
   min-height: 100vh;
   background-size: cover;

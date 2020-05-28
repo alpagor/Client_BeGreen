@@ -61,11 +61,11 @@ class AuthProvider extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-  signup = (username, password, fullName, email) => {
+  signup = (username, password, fullName, email, picture) => {
     axios
       .post(
         process.env.REACT_APP_API_URL + "/auth/signup",
-        { username, password, fullName, email },
+        { username, password, fullName, email, picture },
         { withCredentials: true }
       )
       .then((response) => {

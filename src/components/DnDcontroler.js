@@ -212,19 +212,13 @@ class DnDcontroler extends Component {
               );
 
               return (
-                <Column
-                  key={column.id}
-                  column={column}
-                  recipes={recipes}
-                   /*isDropDisabled={isDropDisabled}*/
-                />
+                <Column key={column.id} column={column} recipes={recipes} />
               );
             })}
           </Container>
         </DragDropContext>
 
-        <Button variant="warning"  onClick={this.handleShow}>
-          {" "}
+        <Button variant="warning" onClick={this.handleShow}>
           CREATE
         </Button>
 
@@ -233,6 +227,7 @@ class DnDcontroler extends Component {
           aria-labelledby="contained-modal-title-vcenter"
           show={this.state.show}
           onHide={this.handleClose}
+          className="modal-create"
         >
           <Modal.Header closeButton>
             <Modal.Title>Create Menu</Modal.Title>
@@ -240,12 +235,14 @@ class DnDcontroler extends Component {
           <Modal.Body>
             <form onSubmit={this.handleSubmit}>
               <label> Write the name of your menu </label>
+              <br/>
               <input
                 type="text"
                 name="name"
                 value={this.state.name}
                 onChange={this.handleChange}
               />
+              <br/>
               <Button
                 className="create-btn"
                 onClick={this.handleClose}

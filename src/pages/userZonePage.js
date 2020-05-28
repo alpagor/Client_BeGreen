@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import './userZone.css'
+import "./userZone.css";
 import {
   Container,
   Card,
@@ -9,6 +9,8 @@ import {
   Form,
   Row,
   Col,
+  Popover,
+  OverlayTrigger,
 } from "react-bootstrap";
 import Navbar from "../components/Navbar";
 
@@ -35,6 +37,8 @@ export class UserZone extends Component {
       fullName: "",
       email: "",
     },
+    show: false,
+    picture: "",
   };
 
   componentDidMount() {
@@ -49,10 +53,12 @@ export class UserZone extends Component {
       .then((response) => {
         const user = response.data;
         console.log(user);
+        
         this.setState({
           user: user,
           fullName: user.fullName,
           email: user.email,
+          picture: user.picture,
         });
       })
       .catch((err) => console.log(err));
@@ -60,17 +66,22 @@ export class UserZone extends Component {
 
   editUserInfo = (e) => {
     e.preventDefault();
-    const { fullName, email } = this.state;
-    console.log(fullName, email);
+    const { fullName, email, picture } = this.state;
+
     axios
       .put(
         process.env.REACT_APP_API_URL + "/api/user",
-        { fullName: fullName, email: email },
+        { fullName: fullName, email: email, picture: picture },
         { withCredentials: true }
       )
       .then((response) => {
         const user = response.data;
-        this.setState({ fullName: user.fullName, email: user.email });
+
+        // this.setState({
+        //   fullName: user.fullName,
+        //   email: user.email,
+        //   picture: user.picture,
+        // });
       })
       .catch((err) => console.log(err));
   };
@@ -82,7 +93,7 @@ export class UserZone extends Component {
     switch (name) {
       case "fullName":
         errors.fullName =
-          value.length < 3 ? "'Full Name must be 3 characters long!'" : "";
+          value.length < 3 ? "Full Name must be 3 characters long!" : "";
         break;
       // case "password":
       //     errors.password =
@@ -98,33 +109,71 @@ export class UserZone extends Component {
     this.setState({ errors, [name]: value });
   };
 
+  handleClick = () => {
+    this.setState({ show: true });
+  };
+
+  handlePicture = (e) => {
+    const file = e.target.files[0];
+    const imgFile = new FormData(); //convert uploading file into Cloudinary format
+
+    imgFile.append("picture", file);
+
+    axios
+      .post(process.env.REACT_APP_API_URL + "/api/picture", imgFile, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        let imgURL = response.data;
+
+        this.setState({ picture: imgURL });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     const { user, fullName, email, errors } = this.state;
     //const user = this.state.user
 
     return (
-      <div className='userZone'>
+      <div className="userZone">
         <Navbar />
         <Container>
           <Card text="dark" border="success" md={{ span: 6, offset: 4 }}>
             <Card.Header>
               <Image
-                roundedCircle
                 fluid
-                src="https://img.icons8.com/officel/2x/user.png"
+                name="picture"
+                src={this.state.picture}
+                style={{ width: "20%", marginBottom: "10px" }}
               />
+              <br />
+              <Form encType="multipart/form-data">
+                <Form.File
+                  id="custom-file"
+                  label=""
+                  custom
+                  className="custom-file"
+                  name="picture"
+                  onChange={this.handlePicture}
+                  type="file"
+                  style={{ width: "9%" }}
+                />
+              </Form>
               <Card.Title>HELLO, {user.username}!</Card.Title>
             </Card.Header>
             <Card.Body>
               <Card.Text>
                 <p style={{ textAlign: "center" }}>
-                  Here you can see your personal info
+                  Here you can see and edit your personal info
                 </p>
                 <br />
                 <Form onSubmit={this.editUserInfo}>
                   <Form.Group as={Row}>
                     <Form.Label column sm={2}>
-                      Full name: 
+                      Full name:
                     </Form.Label>
                     <Col sm={10}>
                       <Form.Control
@@ -140,7 +189,7 @@ export class UserZone extends Component {
                   </Form.Group>
                   <Form.Group as={Row}>
                     <Form.Label column sm={2}>
-                      Email: 
+                      Email:
                     </Form.Label>
                     <Col sm={10}>
                       <Form.Control
@@ -156,9 +205,18 @@ export class UserZone extends Component {
                   </Form.Group>
                   <Form.Group as={Row}>
                     <Col sm={{ span: 10, offset: 2 }}>
-                      <Button type="submit" variant="success">
+                      <Button
+                        onClick={this.handleClick}
+                        type="submit"
+                        variant="success"
+                      >
                         Edit your profile
                       </Button>
+                      {this.state.show && (
+                        <div style={{ color: "green", marginTop: "5px" }}>
+                          Great! User has been updated
+                        </div>
+                      )}
                     </Col>
                   </Form.Group>
                 </Form>

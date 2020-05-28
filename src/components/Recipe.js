@@ -32,7 +32,6 @@ class Recipe extends Component {
   };
 
   handleClick = (e) => {
-    console.log("WHAT IS THIS", e);
     const recipeId = e;
     this.getRecipeDetails(recipeId);
   };
@@ -53,7 +52,6 @@ class Recipe extends Component {
         <Draggable
           draggableId={this.props.recipe._id}
           index={this.props.index}
-          //isDragDisabled={this.props.isDragDisabled} //Disable recipes to move is set to  true    
         >
           {(provided, snapshot) => (
             <Container

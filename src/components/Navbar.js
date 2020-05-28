@@ -20,7 +20,7 @@ class Navbar extends Component {
           to={"/generator"}
           activeStyle={{ color: "#38B735", textDecoration: "underline" }}
         >
-          Generator
+          Meal planner
         </NavLink>
         <NavLink
           to={"/menu"}

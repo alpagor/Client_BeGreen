@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import "./generatorPage.css";
-//import ChatPage from "./chatPage"
 
 import DnDcontroler from "./../components/DnDcontroler";
 
@@ -11,13 +10,10 @@ class GeneratorPage extends Component {
     recipes: [], // 1
     recipeById: {},
     menu: [],
-    // menusList: [],
   };
 
   componentDidMount() {
-    // 3
     this.getAllRecipes();
-    //this.getRecipeById(); TODO
   }
 
   getAllRecipes = (typeString) => {

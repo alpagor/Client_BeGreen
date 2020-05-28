@@ -96,6 +96,14 @@ body {
     flex-direction: row;
     align-items: center;
   }
+
+  .full-name,
+  .user-name{
+    display:flex;
+    flex-direction: column
+  }
+
+  
   
   .name {
     margin-right: 15px;

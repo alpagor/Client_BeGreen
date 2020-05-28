@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "./../lib/Auth";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 import "./Auth.css";
 
 const validEmailRegex = RegExp(
@@ -15,7 +16,7 @@ const validateForm = (errors) => {
     (val) => val.length > 0 && (valid = false)
   );
   return valid;
-}
+};
 
 class Signup extends Component {
   // Our state will contain a property for each input
@@ -25,6 +26,7 @@ class Signup extends Component {
     password: null,
     fullName: null,
     email: null,
+    picture: "",
     errors: {
       username: "",
       password: "",
@@ -35,16 +37,15 @@ class Signup extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    if(validateForm(this.state.errors)){
-          const { username, password, fullName, email } = this.state;
-      console.log(this.state)
-    this.props.signup(username, password, fullName, email);
-    // this.props.signup method is coming from the AuthProvider
-    // injected by the withAuth() HOC
+    if (validateForm(this.state.errors)) {
+      const { username, password, fullName, email, picture } = this.state;
+      console.log("es la bendita fot?>>>>>", picture);
+      this.props.signup(username, password, fullName, email, picture);
+      // this.props.signup method is coming from the AuthProvider
+      // injected by the withAuth() HOC
     } else {
-      console.log("Invalid Form")
+      console.log("Invalid Form");
     }
-
   };
 
   handleChange = (event) => {
@@ -54,11 +55,11 @@ class Signup extends Component {
     switch (name) {
       case "username":
         errors.fullName =
-          value.length < 5 ? "'Username must be 5 characters long!'" : "";
+          value.length < 5 ? "Username must be 5 characters long!" : "";
         break;
       case "fullName":
         errors.fullName =
-          value.length < 3 ? "'Full Name must be 3 characters long!'" : "";
+          value.length < 3 ? "Full Name must be 3 characters long!" : "";
         break;
       case "password":
         errors.password =
@@ -74,9 +75,29 @@ class Signup extends Component {
     this.setState({ errors, [name]: value });
   };
 
+  handlePicture = (e) => {
+
+    const file = e.target.files[0];
+    const imgFile = new FormData(); //convert uploading file into Cloudinary format
+
+    imgFile.append("picture", file);
+
+    axios
+      .post(process.env.REACT_APP_API_URL + "/api/picture", imgFile, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        let imgURL = response.data;
+
+        this.setState({ picture: imgURL });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
-    const { username, password, fullName, email, errors } = this.state;
-     
+    const { username, password, fullName, email, errors, picture } = this.state;
 
     return (
       <div className="green-container">
@@ -97,26 +118,39 @@ class Signup extends Component {
               </h3>
             </div>
 
-            <form onSubmit={this.handleFormSubmit}>
+            <form
+              onSubmit={this.handleFormSubmit}
+              encType="multipart/form-data"
+            >
               <h1>Sign up today!</h1>
               <div className="username">
-                <label>*Full Name:</label>
-                <input
-                  className="name"
-                  type="text"
-                  name="fullName"
-                  value={fullName}
-                  onChange={this.handleChange}
-                />
-                {errors.fullName.length > 0 && <span className="error">{errors.fullName}</span>}
-                <label>*Username:</label>
-                <input
-                  type="text"
-                  name="username"
-                  value={username}
-                  onChange={this.handleChange}
-                />
-                {errors.username.length > 0 && <span className="error">{errors.username}</span>}
+                <div className="full-name">
+                  <label>*Full Name:</label>
+                  <input
+                    className="name"
+                    type="text"
+                    name="fullName"
+                    value={fullName}
+                    onChange={this.handleChange}
+                  />
+                  <br />
+                  {errors.fullName.length > 0 && (
+                    <span className="error">{errors.fullName}</span>
+                  )}
+                </div>
+                <div className="user-name">
+                  <label>*Username:</label>
+                  <input
+                    type="text"
+                    name="username"
+                    value={username}
+                    onChange={this.handleChange}
+                  />
+                  <br />
+                  {errors.username.length > 0 && (
+                    <span className="error">{errors.username}</span>
+                  )}
+                </div>
               </div>
 
               <label>*Password:</label>
@@ -127,7 +161,9 @@ class Signup extends Component {
                 value={password}
                 onChange={this.handleChange}
               />
-              {errors.password.length > 0 && <span className="error">{errors.password}</span>}
+              {errors.password.length > 0 && (
+                <span className="error">{errors.password}</span>
+              )}
               <label>*Email:</label>
               <input
                 className="big-input"
@@ -136,12 +172,17 @@ class Signup extends Component {
                 value={email}
                 onChange={this.handleChange}
               />
-              {errors.email.length > 0 && <span className="error">{errors.email}</span>}
+              {errors.email.length > 0 && (
+                <span className="error">{errors.email}</span>
+              )}
               <Form.File
                 id="custom-file"
                 label="Upload Image"
                 custom
                 className="custom-file"
+                name="picture"
+                onChange={this.handlePicture}
+                type="file"
               />
 
               <Form.Group controlId="formBasicCheckbox">

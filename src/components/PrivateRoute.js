@@ -3,7 +3,6 @@ import { Route, Redirect } from "react-router-dom";
 import { withAuth } from "../lib/Auth";
 
 function PrivateRoute(props) {
-  console.log("props :>> ", props);
 
   const { exact, path, component, isLoggedIn } = props;
   const Component = component;

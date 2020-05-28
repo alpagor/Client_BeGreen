@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components"; //importar antes!!!
+import styled from "styled-components"; 
 import { Droppable } from "react-beautiful-dnd";
 import Recipe from "./Recipe";
 
@@ -33,12 +33,11 @@ class InnerList extends React.Component {
 
   render() {
     return this.props.recipes.map((recipe, index) => {
-      console.log(">>>>>>>", recipe);
       return (
         <Recipe
           key={recipe._id}
           recipe={recipe}
-          index={index} /*isDragDisabled={this.props.isDragDisabled}*/
+          index={index} 
         />
       );
     });
@@ -47,10 +46,7 @@ class InnerList extends React.Component {
 
 class Column extends React.Component {
   render() {
-    // let isDragDisabled = false;
-    // if(this.props.column.isDragDisabled){
-    //   isDragDisabled = true;
-    // }
+  
 
     return (
       <Container>
@@ -60,16 +56,14 @@ class Column extends React.Component {
         <Droppable
           droppableId={this.props.column.id}
           index={this.props.index}
-          /*isDropDisabled={this.props.isDropDisabled}*/
         >
           {(provided, snapshot) => (
             <RecipesList
               ref={provided.innerRef}
               {...provided.droppableProps}
-              /*isDraggingOver={snapshot.isDraggingOver}*/
             >
               <InnerList
-                recipes={this.props.recipes} /*isDragDisabled={isDragDisabled}*/
+                recipes={this.props.recipes} 
               />
               {provided.placeholder}
             </RecipesList>
