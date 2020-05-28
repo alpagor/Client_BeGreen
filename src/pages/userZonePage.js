@@ -53,7 +53,7 @@ export class UserZone extends Component {
       .then((response) => {
         const user = response.data;
         console.log(user);
-        
+
         this.setState({
           user: user,
           fullName: user.fullName,
@@ -159,7 +159,7 @@ export class UserZone extends Component {
                   name="picture"
                   onChange={this.handlePicture}
                   type="file"
-                  style={{ width: "9%" }}
+                  style={{ width: "7.5%" }}
                 />
               </Form>
               <Card.Title>HELLO, {user.username}!</Card.Title>
