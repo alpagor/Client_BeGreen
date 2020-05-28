@@ -54,14 +54,12 @@ export class MenuPage extends Component {
       .then(() => {
         const menusArr = [...this.state.menuList];
         menusArr.splice(index, 1);
-        this.setState({ menuList: menusArr });
+        this.setState({ menuList: menusArr, recipes: [] });
       })
       .catch((err) => console.log(err));
   };
 
- 
   render() {
-    
     return (
       <div className="menu-Page">
         <Navbar />
@@ -81,7 +79,7 @@ export class MenuPage extends Component {
                         this.getMenuDetails(oneMenu._id);
                       }}
                       key={oneMenu._id}
-                      style={{cursor:'pointer'}}
+                      style={{ cursor: "pointer" }}
                     >
                       <Card.Title>{oneMenu.name}</Card.Title>
 
