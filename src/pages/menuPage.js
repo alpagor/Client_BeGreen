@@ -59,19 +59,11 @@ export class MenuPage extends Component {
       .catch((err) => console.log(err));
   };
 
-  handleClick = (e) => {
-    const menuId = e;
-    this.getMenuDetails(menuId);
-  };
-
+ 
   render() {
-    const handleShow = (value) => {
-      this.setState({ show: true });
-      this.handleClick(value);
-    };
-
+    
     return (
-      <div className='menu-Page'>
+      <div className="menu-Page">
         <Navbar />
         <p className="menu-page">
           Here you can look at the menus you saved. <br /> If you want more
@@ -83,15 +75,16 @@ export class MenuPage extends Component {
               {this.state.menuList &&
                 this.state.menuList.map((oneMenu, index) => {
                   return (
-                    <Card className="menu-name">
-                      <Link
-                        onClick={function() {
-                          handleShow(oneMenu._id);
-                        }}
-                        key={oneMenu._id}
-                      >
-                        <Card.Title>{oneMenu.name}</Card.Title>
-                      </Link>
+                    <Card
+                      className="menu-name"
+                      onClick={() => {
+                        this.getMenuDetails(oneMenu._id);
+                      }}
+                      key={oneMenu._id}
+                      style={{cursor:'pointer'}}
+                    >
+                      <Card.Title>{oneMenu.name}</Card.Title>
+
                       <Button
                         onClick={() => this.handleDelete(oneMenu._id, index)}
                         size="sm"
@@ -106,7 +99,7 @@ export class MenuPage extends Component {
             </ListGroup>
           </Col>
           <Col sm={8} className="hide-div">
-            {this.state.show && (
+            {this.state.recipes.length > 0 && (
               <MenuRecipeList
                 name={this.state.name}
                 recipes={this.state.recipes}
