@@ -52,6 +52,7 @@ class DnDcontroler extends Component {
       .catch((err) => console.log(err));
   };
 
+  //receive the previous properties
   componentDidUpdate(prevProps) {
     if (prevProps.recipes !== this.props.recipes) {
       const { recipes: recipesArr } = this.props;
@@ -235,14 +236,14 @@ class DnDcontroler extends Component {
           <Modal.Body>
             <form onSubmit={this.handleSubmit}>
               <label> Write the name of your menu </label>
-              <br/>
+              <br />
               <input
                 type="text"
                 name="name"
                 value={this.state.name}
                 onChange={this.handleChange}
               />
-              <br/>
+              <br />
               <Button
                 className="create-btn"
                 onClick={this.handleClose}

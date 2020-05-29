@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import {
   Row,
   ListGroup,
   Col,
   Card,
-  ListGroupItem,
   Button,
 } from "react-bootstrap";
 import Navbar from "../components/Navbar";

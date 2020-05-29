@@ -55,7 +55,7 @@ class Recipe extends Component {
         >
           {(provided, snapshot) => (
             <Container
-              {...provided.draggableProps}
+              {...provided.draggableProps} //properties of the obj provided apllied to the dragable component
               {...provided.dragHandleProps} //control the draggin of the entire dragable  = recipe
               ref={provided.innerRef}
               isDragging={snapshot.isDragging}

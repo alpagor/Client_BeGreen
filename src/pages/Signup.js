@@ -39,7 +39,7 @@ class Signup extends Component {
     event.preventDefault();
     if (validateForm(this.state.errors)) {
       const { username, password, fullName, email, picture } = this.state;
-      console.log("es la bendita fot?>>>>>", picture);
+      
       this.props.signup(username, password, fullName, email, picture);
       // this.props.signup method is coming from the AuthProvider
       // injected by the withAuth() HOC
@@ -54,7 +54,7 @@ class Signup extends Component {
 
     switch (name) {
       case "username":
-        errors.fullName =
+        errors.username =
           value.length < 5 ? "Username must be 5 characters long!" : "";
         break;
       case "fullName":

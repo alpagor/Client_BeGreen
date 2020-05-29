@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components"; 
+import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Recipe from "./Recipe";
 
@@ -24,6 +24,7 @@ const RecipesList = styled.div`
 `;
 
 class InnerList extends React.Component {
+  //no render until the condition is fulfill
   shouldComponentUpdate(nextProps) {
     if (nextProps.recipes === this.props.recipes) {
       return false;
@@ -33,38 +34,22 @@ class InnerList extends React.Component {
 
   render() {
     return this.props.recipes.map((recipe, index) => {
-      return (
-        <Recipe
-          key={recipe._id}
-          recipe={recipe}
-          index={index} 
-        />
-      );
+      return <Recipe key={recipe._id} recipe={recipe} index={index} />;
     });
   }
 }
 
 class Column extends React.Component {
   render() {
-  
-
     return (
       <Container>
         <Title className="dragRecipes-container">
           {this.props.column.title}
         </Title>
-        <Droppable
-          droppableId={this.props.column.id}
-          index={this.props.index}
-        >
+        <Droppable droppableId={this.props.column.id} index={this.props.index}>
           {(provided, snapshot) => (
-            <RecipesList
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
-              <InnerList
-                recipes={this.props.recipes} 
-              />
+            <RecipesList ref={provided.innerRef} {...provided.droppableProps}> 
+              <InnerList recipes={this.props.recipes} />
               {provided.placeholder}
             </RecipesList>
           )}
